@@ -24,22 +24,22 @@ def janken
  puts "相手：#{program_hand}を出しました"
  puts "---------------"
 
- result = player - program
+ $janken_result = player - program
 
- def Jresult(result)
-   if result == 0
+ #def Jresult(result)
+   if $janken_result == 0
     puts "あいこ"
     return true
-   elsif result == 2 || result == -1
+   elsif $janken_result == 2 || $janken_result == -1
     puts "勝ち"
     return false
-   elsif result == 1 || result == -2
+   elsif $janken_result == 1 || $janken_result == -2
     puts "負け"
     return false
    end
- end
+ #end
  
- Jresult(result)
+# Jresult(result)
 
 end
 
@@ -73,10 +73,11 @@ puts "---------------"
 puts "あなた： #{player_direction}"
 puts "相手： #{program_direction}"
 
-if player_direction == program_direction && ( result == 2 || result == -1 )
+if player_direction == program_direction && ( $janken_result == 2 || $janken_result == -1 )
   puts "あなたの勝ち"
-elsif player_direction == program_direction && ( result == 1 || result == -2 )
+elsif player_direction == program_direction && ( $janken_result == 1 || $janken_result == -2 )
   puts "あなたの負け"
 else
   puts "ジャンケンに戻る"
+  janken
 end
