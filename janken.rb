@@ -14,9 +14,10 @@ def janken
    puts "ホイ！"
  elsif player == 3
    puts "戦わない"
-   return
+   exit
  else 
    puts "1〜3の数字を入力してください"
+   return true
  end
 
  puts "---------------"
@@ -26,58 +27,63 @@ def janken
 
  $janken_result = player - program
 
- #def Jresult(result)
-   if $janken_result == 0
-    puts "あいこ"
-    return true
-   elsif $janken_result == 2 || $janken_result == -1
-    puts "勝ち"
-    return false
-   elsif $janken_result == 1 || $janken_result == -2
-    puts "負け"
-    return false
-   end
- #end
- 
-# Jresult(result)
+ if $janken_result == 0
+  puts "あいこ"
+  return true
+ elsif $janken_result == 2 || $janken_result == -1
+  puts "勝ち"
+  return false
+ elsif $janken_result == 1 || $janken_result == -2
+  puts "負け"
+  return false
+ end
 
 end
 
-next_game = true
 
-while  next_game
-  next_game = janken
-end
+def atti_hoi
+ puts "あっち向いて〜"
+ puts "0(上）1(下)2(左)3(右)"
 
+ hoi = ["上","下","左","右"]
 
-#if Jresult(result) == "勝ち"
- # puts "win"
-#elsif Jresult(result) == "負け"
- # puts "lose"
-#else puts "continue"
-#end
+ player = gets.to_i
+ player_direction = hoi[player]
+ program = rand(4)
+ program_direction = hoi[program]
 
-puts "あっち向いて〜"
-puts "0(上）1(下)2(左)3(右)"
+ puts "ホイ！"
+ puts "---------------"
 
-Hoi = ["上","下","左","右"]
+ puts "あなた： #{player_direction}"
+ puts "相手： #{program_direction}"
 
-player = gets.to_i
-player_direction = Hoi[player]
-program = rand(4)
-program_direction = Hoi[program]
-
-puts "ホイ！"
-puts "---------------"
-
-puts "あなた： #{player_direction}"
-puts "相手： #{program_direction}"
-
-if player_direction == program_direction && ( $janken_result == 2 || $janken_result == -1 )
+ if player_direction == program_direction && ( $janken_result == 2 || $janken_result == -1 )
   puts "あなたの勝ち"
-elsif player_direction == program_direction && ( $janken_result == 1 || $janken_result == -2 )
+  return false
+ elsif player_direction == program_direction && ( $janken_result == 1 || $janken_result == -2 )
   puts "あなたの負け"
-else
-  puts "ジャンケンに戻る"
-  janken
+  return false
+ else
+  return true
+ end
 end
+
+
+def game
+ if janken == true
+  return true
+ else
+  if atti_hoi == true
+   return true
+  else
+   return false
+  end
+ end
+end
+   
+next_game = true
+ 
+while  next_game
+ next_game = game
+end  
