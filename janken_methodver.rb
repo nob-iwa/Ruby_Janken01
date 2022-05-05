@@ -63,7 +63,6 @@ end
 #end
 
 
-
 def atti_hoi
  puts "あっち向いて〜"
  puts "0(上）1(下)2(左)3(右)"
